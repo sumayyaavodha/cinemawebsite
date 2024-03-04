@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Product section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{ansr.image.url}}" alt="..." style="height:400px;width:400px;"></div>
+                    <div class="col-md-6">
+                        <h1 class="display-5 fw-bolder">{{ansr.movie_name}}</h1>
+                        <p class="lead">{{ansr.release_date}}</p><span>{{i.category}}</span><span>{{i.actors}}</span>
+                        <p class="lead">{{ansr.desc}}</p>
+                        <p class="lead">{{ansr.trailer_link}}</p>
+                        <div class="d-flex">
+                            <a href="{% url 'cinemaapp:update' ansr.id %}"><button class="btn btn-outline-dark flex-shrink-0" type="button">
+                                Update
+                            </button></a>
+                            <a href="{% url 'cinemaapp:delete' ansr.id %}"><button class="btn btn-outline-dark flex-shrink-0" type="button">
+                                Delete
+                            </button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}

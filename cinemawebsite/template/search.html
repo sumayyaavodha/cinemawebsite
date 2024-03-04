@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<body>
+<div>
+    <p class="text-center my_search_text">You have searched for :<b>"{{query}}"</b></p>
+<div id="screenshot" class="Lastestnews">
+        <div class="container" align="center">
+            {% for i in movies %}
+            <div class="row mx_auto" >
+               <div class="col-sm-12 col-md-4 xol-lg-4">
+                   <div class="news-box" style="height:550px;">
+                        <figure><a href="{% url 'cinemaapp:detail' i.id %}"><img src="{{i.image.url}}" alt="img" style="height:300px;width:350px;"></a></figure>
+                        <h3>{{i.movie_name}}</h3>
+                        <span>{{i.release_date}}</span><span>{{i.category}}</span><span>{{i.actors}}</span>
+                        <p>{{i.desc|truncatewords:17}}</p>
+                        <p>{{i.trailer_link}}</p>
+                    </div>
+               </div>
+           </div>
+            {% empty %}
+            <div>
+                <p class="text-center my_search_text">0 result found</p>
+            </div>
+            {% endfor %}
+        </div>
+</div>
+</div>
+</body>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<section class="banner_section">
+        <div class="banner-main">
+            <img src="{% static 'images/banner2.jpg' %}" />
+            <div class="container">
+
+                <div class="text-bg relative">
+                    <h1><br><span class="Perfect">The Perfect Movies</span><br>Welcome To The Movie</h1>
+                    <p>Lorem ipsum dolor sit amet consec tetur adipiscing elit elit at felis lacinia nec et est
+                        <br> aptent taciti sociosqu ad litora torquent per conubia nostra</p>
+                    <a href="{% url 'cinemaapp:add_movie' %}">Add Movie</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+<!-- Download -->
+    <div id="screenshot" class="Lastestnews">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titlepage">
+                        <h2>Latest Movies</h2>
+                        <span>It is a long established fact that a reader will be distracted by the readable <br>content of a page when looking at its layout. The point of using Lorem </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row" align="center">
+                {% for i in res %}
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                    <div class="news-box" style="height:550px;">
+                        <figure><a href="{% url 'cinemaapp:detail' i.id %}"><img src="{{i.image.url}}" alt="img" style="height:300px;width:350px;"></a></figure>
+                        <h3>{{i.movie_name}}</h3>
+                        <span>{{i.release_date}}</span><span>{{i.category}}</span><span>{{i.actors}}</span>
+                        <p>{{i.desc|truncatewords:17}}</p>
+                        <p>{{i.trailer_link}}</p>
+                    </div>
+                    <br>
+                </div>
+                {% endfor %}
+            </div>
+<!--            <div class="mx-auto">-->
+<!--                {% if res.paginator.num_pages > 1 %}-->
+<!--                <hr>-->
+<!--                    <div class="text-center">-->
+<!--                    {% for pg in res.paginator.page_range %}-->
+<!--                    <a href="?page={{pg}}" class="btn btn-light btn-sm {% if res.number == pg %} activate {% endif %}">{{pg}}</a>-->
+<!--                    {% endfor %}-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                {% endif %}-->
+        </div>
+    </div>
+    <!-- end Download -->
+
+</body>
+</html>
+{% endblock %}
